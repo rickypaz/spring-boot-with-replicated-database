@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Kindle</title>
+</head>
+<body>
+
+<h1>New Kindle</h1>
+
+<form action="/kindles/new" method="post" th:object="${kindle}">
+    <label for="owner">Owner:</label>
+    <input type="text" id="owner" name="owner" th:field="*{owner}"/>
+
+    <br/>
+
+    <button type="submit">Save Kindle</button>
+</form>
+
+<a href="/kindles">Back to Kindles</a>
+
+</body>
+</html>

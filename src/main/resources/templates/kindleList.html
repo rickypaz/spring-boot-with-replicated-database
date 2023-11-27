@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kindles</title>
+</head>
+<body>
+
+<h1>Kindles</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Owner</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="kindle : ${kindles}">
+        <td th:text="${kindle.id}"></td>
+        <td th:text="${kindle.owner}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/kindles/new">Add a Kindle</a>
+
+</body>
+</html>
