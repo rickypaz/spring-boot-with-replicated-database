@@ -9,6 +9,28 @@ services:
       MYSQL_DATABASE: leader
     volumes:
       - ./init_script.sql:/docker-entrypoint-initdb.d/init_script.sql
-    command: --server-id=1 --log-bin=mysql-bin --binlog-format=row
+      - ./dump:/docker-entrypoint-initdb.d/dump
+    command: --server-id=1 --log-bin=mysql-bin --binlog-format=row --binlog-do-db=leader
     ports:
       - "3306:3306"
+    networks:
+      - replication-network
+
+  mysql-slave:
+    image: mysql:8.0
+    container_name: mysql-slave
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d/dump
+    command: --server-id=2
+    ports:
+      - "3307:3306"
+    depends_on:
+      - mysql-master
+    networks:
+      - replication-network
+
+networks:
+  replication-network:
+    driver: bridge

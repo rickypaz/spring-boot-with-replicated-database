@@ -1,0 +1,15 @@
+Create two instances of MySQL 8.0 using docker compose. Its file follows specification given by MySQL 8.
+
+The first one must have a database called leader with 123456 as root's password.
+
+Create a script which add a new user called replication with password replica encrypted with sha256_password. Next create a table called kindle with two columns. Id as primary key as an auto incremented field and owner with not null constraint.
+
+Insert three entries inside kindle table. Fill it with names ricky, rafaella and ruddy.
+
+Run that script on initialization.
+
+Configure first instance as a master database using command property in docker compose. Binlog format is row and Binlog db is leader. Ignore mysql.
+
+After all create a dump for mysql first instance it and save it inside docker's instance home folder.
+
+Second instance has no database as default. Besides, it'll be a replication node from the first instance and must receive any data added in leader database created for first instance..

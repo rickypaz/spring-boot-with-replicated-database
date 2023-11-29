@@ -1,7 +1,7 @@
 -- Script to be executed on initialization
 
--- Create a new user called 'replication' with password 'replica' encrypted with sha256_password
-CREATE USER 'replication'@'%' IDENTIFIED WITH 'sha256_password' BY 'replica';
+-- Create a new user called 'replication' with password 'replica' encrypted with caching_sha2_password
+CREATE USER 'replication'@'%' IDENTIFIED WITH 'caching_sha2_password' BY 'replica';
 GRANT REPLICATION SLAVE ON *.* TO 'replication'@'%';
 
 -- Create 'kindle' table with two columns (id and owner)
